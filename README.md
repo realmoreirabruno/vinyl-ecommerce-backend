@@ -1,25 +1,41 @@
 # Projeto Ecommerce de Discos de Vinil - Bruno Moreira
 
-<h2>O que é</h2>
-O projeto é um ecommerce de discos de vinil que utiliza a API do Spotify para buscar pelos albums e discos.
+######  Criada com Java 21 e Springboot
 
-É possivel procurar, pesquisar, comprar e remover discos da sua conta.<br>
-É possivel também criar, logar e deslogar de uma conta de um usuário.<br>
-Além de ser possível adicionar créditos a sua carteira
+---
+##### Pontos iniciais
 
-<h2>Como executar</h2>
-Baixe os arquivos do repositório ou execute o comando git clone em uma pasta de sua escolha. Para evitar possíveis erros, garanta que a pasta raíz (onde está o arquivo docker-compose.yml) esteja nomeada como bruno-moreira-backend.<br><br>
+- Essa API possui uma documentação gerada pelo Swagger para auxiliar na compreensão das requisições, porém será necessário utilizar um serviço como Postman, pois grande partes das requisições necessitam do token de autenticação ou de alguma implementação feita pelo Middleware. está acessível na URI: */swagger-ui/index.html#/*.
+-  O ambiente de desenvolvimento da Api de Users está na porta 8081.
+-  O ambiente de desenvolvimento da Api de Integration está na porta 8082.
 
-Em seguida, instale as dependências de ambas as APIs utilizando clean + install do Maven em cada projeto e depois recarregue-os.<br>
+##### Como executar a aplicação
+É necessário ter o Docker instalado para executar a aplicação localmente.
+  - ```git clone https://github.com/Maxixee/record-sales-backend.git ``` Para clonar o repositório na sua IDE
+  - ```docker-compose -f docker-compose.yml build ``` Para baixar as imagens do Postgres, RabbitMQ e das 2 APIs
+  - ```docker-compose -f docker-compose.yml up ``` Para criar os containers.
 
-No caminho "vinyl-ecommerce-backend/app-integration-api/src/main/java/br/com/sysmap/bootcamp/domain/service/integration", adicione seu id e segredo do spotify apis.<br>
+- Realizados estes comandos, basta buildar e executar o backend na sua IDE.
 
-Por último, execute o comando "docker compose up" a partir da pasta raíz do projeto.
+# Documentação
 
-OBS.: Para evitar bugs, é recomendado começar os testes apenas depois de garantir que todos os módulos da aplicação estejam iniciados.
+  - Ambas as APIs foram documentadas pelo swagger, as documentações podem ser acessadas nas URLs: 
+  - API User: ```http://localhost:8081/api/swagger-ui/index.html#/```
+  - API Integration: ```http://localhost:8082/api/swagger-ui/index.html#/```
 
-<h2>Documentação dos endpoints</h2>
-Para ver a documentação das APIs, suba a aplicação e acesse os seguintes links:<br>
+---
 
-http://localhost:8081/api/swagger-ui/index.html<br>
-http://localhost:8082/api/swagger-ui/index.html
+# Banco de dados.
+
+###### O banco de dados utilizado na aplicação é o Postgresql
+
+---
+# Serviço Autenticação
+###### A autenticação é realizada através do endpoint '/api/users/auth', onde realiza o verbo POST, obtendo o email e a senha, retornando os dados do usuários, além  de gerar um token de autenticação.
+
+---
+### Token de autenticação
+
+###### O token de autenticação é gerado utilizando Basic Auth do SpringSecurity
+
+---
